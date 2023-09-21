@@ -56,7 +56,7 @@ class HopfieldEncoderLayer(Module):
                 module.reset_parameters()
 
     def forward(self, src: Tensor, src_mask: Optional[Tensor] = None,
-                src_key_padding_mask: Optional[Tensor] = None) -> Tensor:
+                src_key_padding_mask: Optional[Tensor] = None, is_causal=False) -> Tensor:
         """
         Apply Hopfield encoding on specified data.
 
@@ -152,7 +152,7 @@ class HopfieldDecoderLayer(Module):
 
     def forward(self, tgt: Tensor, memory: Tensor, tgt_mask: Optional[Tensor] = None,
                 memory_mask: Optional[Tensor] = None, tgt_key_padding_mask: Optional[Tensor] = None,
-                memory_key_padding_mask: Optional[Tensor] = None) -> Tensor:
+                memory_key_padding_mask: Optional[Tensor] = None, tgt_is_causal=True, memory_is_causal=False) -> Tensor:
         """
         Apply Hopfield decoding on specified data.
 
